@@ -310,6 +310,10 @@
                 dragging: function(e) {
                     if (cache.isDragging && settings.touchToDrag) {
 
+                        if ('which' in e ? e.which === 0 : e.button === 0) {
+                            return action.drag.endDrag(e);
+                        }
+
                         var thePageX = utils.page('X', e),
                             thePageY = utils.page('Y', e),
                             translated = cache.translation,
